@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/moe/TAHAbot_ws/install/tahabot_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/moe/assignment_ws/src/robotics_software_engineer/control_systems/include/**",
+        "/home/moe/assignment_ws/src/robotics_software_engineer/cpp_fundamentals/include/**",
+        "/home/moe/assignment_ws/src/robotics_software_engineer/path_planning/include/**",
+        "/home/moe/assignment_ws/src/robotics_software_engineer/sensor_fusion/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

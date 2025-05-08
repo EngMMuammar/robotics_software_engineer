@@ -1,90 +1,67 @@
 # Module 1 Assignment: Introduction to OOP Concepts in C++ for Robotics
 
-## Objective
+## Project Overview
 
-This assignment aims to introduce basic Object-Oriented Programming (OOP) concepts using C++ within a robotics context. You will develop a series of C++ programs that simulate robotic behavior, utilize sensor data, and demonstrate fundamental OOP principles.
+This repository contains C++ programs that demonstrate basic Object-Oriented Programming (OOP) concepts in a robotics context. The task focuses on simulating a robotic system, incorporating actuators, sensors, and robot behaviors using fundamental OOP principles like classes, inheritance, and polymorphism.
+
+### Learning Outcomes
+By completing this assignment, you will:
+- Understand and apply basic OOP concepts in C++.
+- Simulate robot behaviors, including movement and actuator control.
+- Work with class inheritance and polymorphism to handle different types of actuators (e.g., arm and wheel actuators).
+- Simulate sensor data and handle different sensor types in the robot's environment.
+
+## Folder Structure
+
+The project is divided into several tasks, each with its own specific functionality:
+
+- **include/**: Contains header files for the robot and actuator classes.
+- **src/**: Contains source files for the program, including actuator and robot behavior logic.
+- **CMakeLists.txt**: CMake configuration for building the project.
+- **package.xml**: ROS package configuration file.
+- **README.md**: This documentation file.
 
 ## Tasks
 
 ### Task 1: Robot Class Implementation
-
-- **Define a `Robot` class** with the following attributes:
-  - `name`: The name of the robot.
-  - `speed`: The speed of the robot.
-  - **Physical Attributes:**
-    - `weight`: The weight of the robot.
-    - `size`: The size of the robot.
-    - `number_of_sensors`: The number of sensors the robot has.
-
-- **Methods for moving the robot:**
-  - `moveForward()`: Simulate the robot moving forward.
-  - `moveBackward()`: Simulate the robot moving backward.
-  - `stop()`: Simulate stopping the robot.
-
-- **Instantiate a `Robot` object** and simulate actions by invoking its methods.
-
-- **Use namespaces** to define different robots. Ensure that each action is outputted to the console to demonstrate the robot's behavior.
+In this task, a `Robot` class is implemented with attributes like `name`, `speed`, `weight`, `size`, and `number_of_sensors`. Methods like `moveForward()`, `moveBackward()`, and `stop()` are implemented to simulate robot movement. Different robots are simulated using namespaces.
 
 ### Task 2: Simulating Sensor Readings
-
-- **Create a C++ program** that represents a robot equipped with temperature and distance sensors.
-
-- **Simulate sensor readings** with hardcoded values:
-  - Example for temperature: `Temperature: 20°C`
-  - Example for distance: `Distance: 100cm`
-
-- **Print these values** to the console with appropriate descriptions.
+A program is created to simulate a robot equipped with temperature and distance sensors. The sensor data is hardcoded, and the program prints sensor readings (e.g., `Temperature: 20°C`, `Distance: 100cm`) to the console.
 
 ### Task 3: Sensor Library Design
-
-- **Design a simple sensor library** that includes classes for different types of sensors:
-  - `TemperatureSensor`: Class for handling temperature readings.
-  - `DistanceSensor`: Class for handling distance measurements.
-
-- **Use these classes in a main program** to simulate getting readings from sensors.
-
-- **Create a single-class template** that can be used for multiple sensor types:
-  - For `double` data
-  - For `string` data
-  - For `char` data
-
-- **Ensure proper documentation** and use a `CMakeLists.txt` file for building the project.
+A simple sensor library is designed with two classes: `TemperatureSensor` and `DistanceSensor`. The sensor readings are simulated and printed. Additionally, a generic template class is used to handle multiple sensor types like double, string, and char data.
 
 ### Task 4: Debugging a Multi-File C++ Project
-`Task Description:`
+In this task, a multi-file project simulates a robot system with actuators. The actuators (arm and wheel) are represented as classes inheriting from a base `Actuator` class. Methods to activate, deactivate, and manipulate the actuators are implemented. Polymorphism is used for handling different types of actuators. The task also focuses on debugging and fixing compilation issues in a multi-file C++ project.
 
-Your task is to fix and debug a multi-file C++ project for a robot simulation. The project is incomplete and contains various errors in syntax, logic, and structure. The project includes classes for Robot, actuators, and Main execution.
+## Requirements
 
-## Learning Outcome
+- **C++14 or later**: The project uses modern C++ features.
+- **CMake**: Required to build the project using ROS 2's build system.
+- **ROS 2**: Ensure your ROS 2 workspace is set up (if applicable).
+- **ament_cmake**: CMake extension for ROS 2 build.
 
-By completing this assignment, you will:
-- Apply C++ syntax to simulate basic robotics concepts.
-- Grasp fundamental OOP principles and understand their application in robotics software development.
-----
-## Submission Process
+## Building the Project
 
-1. **Fork the Repository:**
-   - Fork the `Robotics Software Engineer` repository, ensuring all branches are included in your fork.
-
-2. **Clone Your Forked Repository:**
+1. **Clone the repository**:
    ```bash
-   git clone <your-forked-repo-url>
-   cd robotics_software_engineer
+   git clone https://github.com/EngMMuammar/robotics_software_engineer.git
+   cd module_1_assignment
+
+2. **Create a build directory**:
+Navigate to your project directory and create a build directory:
+   ```bash
+   mkdir build
+   cd build
    ```
 
-3. **Create Files:**
-   - Navigate to the `module_1_assignment` package.
-   - Create files for each task as required.
+3. **Build the project**:
+Run the following commands to configure and build the project using CMake:
+   ```bash
+   cmake ..
+   make
+   ```
 
-4. **Document Your Work:**
-   - Create a `README.md` file in the `module_1_assignment` package.
-   - Provide details about the files you created.
-   - Explain the commands required to run your code for each specific task.
-
-5. **Submit Your Assignment:**
-   - Push your changes to your forked repository.
-   - Provide your repository link in the assignment submission text area.
-
-6. **Wait for Review:**
-   - Wait for the instructors to review your submission.
-
+4. **Run the executables**:
+Once the project is built, you can run the corresponding executables for each task

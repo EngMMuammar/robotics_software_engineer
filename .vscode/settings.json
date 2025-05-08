@@ -1,0 +1,22 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/moe/TAHAbot_ws/install/tahabot_utils/local/lib/python3.10/dist-packages",
+        "/home/moe/TAHAbot_ws/install/TAHAbot_py_examples/lib/python3.10/site-packages",
+        "/home/moe/TAHAbot_ws/install/tahabot_msgs/local/lib/python3.10/dist-packages",
+        "/home/moe/ros2_ws/install/my_python_pkg/lib/python3.10/site-packages",
+        "/home/moe/ros2_ws/install/arduino_py_firmware/lib/python3.10/site-packages",
+        "/home/moe/ros2_ws/install/arduino_firmware/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/moe/TAHAbot_ws/install/tahabot_utils/local/lib/python3.10/dist-packages",
+        "/home/moe/TAHAbot_ws/install/TAHAbot_py_examples/lib/python3.10/site-packages",
+        "/home/moe/TAHAbot_ws/install/tahabot_msgs/local/lib/python3.10/dist-packages",
+        "/home/moe/ros2_ws/install/my_python_pkg/lib/python3.10/site-packages",
+        "/home/moe/ros2_ws/install/arduino_py_firmware/lib/python3.10/site-packages",
+        "/home/moe/ros2_ws/install/arduino_firmware/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

@@ -7,25 +7,52 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+
+
+add_executable(task1 src/task1.cpp)
+install(TARGETS task1
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+add_executable(task2 src/task2.cpp)
+install(TARGETS task2
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+
+include_directories(include)
+
+add_executable(task3
+  src/task3/main.cpp
+)
+
+ament_target_dependencies(task3)
+
+install(TARGETS task3
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 
 
-# ADD TASK 4 Executables here
+add_executable(task4_robot_actuators
+  src/Actuator.cpp
+  src/Robot.cpp
+  src/main.cpp
+)
 
+install(TARGETS task4_robot_actuators
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install header files
+install(DIRECTORY include/
+  DESTINATION include/
+)
 
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
+  
   ament_lint_auto_find_test_dependencies()
 endif()
 
