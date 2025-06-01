@@ -7,14 +7,44 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(turtlesim REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+add_executable(circle_mover src/circle_mover.cpp)
+ament_target_dependencies(circle_mover rclcpp geometry_msgs)
 
+add_executable(spiral_mover src/spiral_mover.cpp)
+ament_target_dependencies(spiral_mover rclcpp geometry_msgs)
+
+add_executable(turtle_backforth src/turtle_backforth.cpp)
+ament_target_dependencies(turtle_backforth rclcpp geometry_msgs)
 
 # ADD TASK 5 Executables here
+add_executable(led_publisher src/led_publisher.cpp)
+ament_target_dependencies(led_publisher rclcpp std_msgs)
 
+add_executable(led_subscriber src/led_subscriber.cpp)
+ament_target_dependencies(led_subscriber rclcpp std_msgs)
+
+
+install(TARGETS
+  circle_mover
+  spiral_mover
+  turtle_backforth
+  led_publisher
+  led_subscriber
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

@@ -1,45 +1,128 @@
 # Module 2 Assignment: Developing Custom ROS 2 Nodes and Launch Files
 
-## Objective
+## Project Overview
 
-This assignment focuses on developing your ability to write custom ROS 2 nodes and utilize launch files for running multiple nodes simultaneously. You will create a custom ROS 2 node that controls the Turtlesim simulation and develop a launch file to run the simulation and node together.
+This project involves creating custom ROS 2 C++ nodes and Python launch files to control the Turtlesim simulator. It includes turtle motion control, spawning multiple turtles using services, adjusting behavior with parameters, and debugging node communication using the `UInt8MultiArray` message type.
+
+
+
+## Folder Structure
+
+- `launch/`: Python launch files to start the Turtlesim simulator, spawn turtles, and run custom ROS 2 nodes for movement and LED control.
+- `src/`: C++ source files implementing turtle movement patterns (circle, spiral, back and forth) and LED state publisher/subscriber nodes.
+- `CMakeLists.txt`: Build configuration file specifying how to compile the C++ nodes and link dependencies.
+- `package.xml`: ROS 2 package manifest defining package information and dependencies.
 
 ## Tasks
 
+
+
 ### Task 1: Create a Custom ROS 2 Node
 
-- **Develop a ROS 2 node** that makes the Turtlesim follow a unique pattern:
-  - **Circle Movement:** The turtle should move in a circle with a radius that is provided as a user input.
-  - **Logarithmic Spiral Movement:** The turtle should move in a logarithmic spiral pattern.
+In this task, two C++ nodes were implemented to control the Turtlesim turtle’s movement:
+
+- `circle_mover.cpp`: The turtle is moved in a circle using a user-provided radius.
+- `spiral_mover.cpp`: The turtle is moved in a logarithmic spiral by adjusting velocities over time.
+
+Velocity commands are published by both nodes to control the turtle’s motion in Turtlesim.
+
 
 ### Task 2: Develop a Launch File
 
-- **Create a launch file** that starts the Turtlesim simulation and the custom ROS 2 node simultaneously.
+In this task, a Python launch file was created to start the Turtlesim simulation and the custom turtle control nodes simultaneously.
 
-- **Ensure proper documentation** of the node and launch file creation process, including the code and the results of executing the tasks.
+The launch file (`turtle_control.launch.py`) ensures coordinated execution of the Turtlesim node along with the circle and spiral mover nodes, simplifying node management.
+
+**Commands to run the launch file:**
+```bash
+ros2 launch module_2_assignment turtle_control.launch.py
+```
+
+
+
 
 ### Task 3: Modify the Turtlesim Simulation Environment
 
-- **Use existing Turtlesim services** such as `spawn` and `clear` to modify the simulation environment:
-  - **Spawn 5 Turtlebots** with a single launch file, placing them diagonally from the top left to the bottom right.
-  - **Drive the middle 3 turtles** back and forth continuously using ROS 2 services.
+In this task, a Python launch file (`turtle_spawner.launch.py`) was created to spawn 5 turtles diagonally across the Turtlesim window using the `/spawn` service. 
+
+Additionally, the middle 3 turtles were controlled to move back and forth continuously using a custom C++ node (`turtle_backforth.cpp`) that sends velocity commands via ROS 2 services.
+
+**Commands to run the launch file:**
+```bash
+ros2 launch module_2_assignment turtle_spawner.launch.py
+```
 
 ### Task 4: Modify Turtle Behavior with Parameters
 
-- **Utilize ROS 2 parameters** to alter the behavior of the turtles:
-  - **Change the speed** of the turtles dynamically during the simulation.
+In this task, ROS 2 parameters were used to dynamically control the speed of the turtles during the simulation. The speed parameter was declared and updated in the custom C++ nodes controlling the turtles’ movement, allowing real-time speed adjustments without restarting the nodes.
+
+**Commands to run the turtle control node with a custom speed parameter:**
+```bash
+ros2 run module_2_assignment circle_mover --ros-args -p speed:=2.0
+```
 
 ### Task 5: Debugging a ROS 2 Node Using a Message Type
-`Task Description:`
 
- Your task is to debug and fix a ROS 2 package that uses an uncommon message type, specifically std_msgs/msg/UInt8MultiArray. The node publishes and subscribes to this message type to simulate controlling the state of a robot's LEDs.
+In this task, debugging and fixing of a ROS 2 package handling the `std_msgs/msg/UInt8MultiArray` message type were performed. The package includes two C++ nodes: a publisher (`led_publisher.cpp`) that publishes LED states, and a subscriber (`led_subscriber.cpp`) that receives and logs these states.
 
-`Key Focus:`
+Key issues addressed:
+- Correct handling of the `UInt8MultiArray` message type.
+- Fixing errors in message publishing and subscribing.
+- Correct parameter usage and logging.
 
-- Correctly handle the UInt8MultiArray message type.
-- Debug errors related to message publishing and subscribing.
-- Fix issues in parameter handling.
+**Commands to build the package:**
+```bash
+colcon build --packages-select module_2_assignment
+source install/setup.bash
+```
 
+**Commands to run the nodes separately for debugging:**
+```bash
+ros2 run module_2_assignment led_publisher
+ros2 run module_2_assignment led_subscriber
+```
+**Using the launch file to run both nodes together:**
+```bash
+ros2 launch module_2_assignment led_control.launch.py
+
+```
+
+**Useful debugging commands:**
+
+- To view active topics:
+```bash
+ros2 topic list
+```
+- To echo messages on the LED states topic:
+```bash
+ros2 topic echo /led_states
+```
+
+- To check node parameters:
+```bash
+ros2 param list /led_publisher
+ros2 param get /led_publisher <param_name>
+
+```
+- To set or change parameters dynamically:
+```bash
+ros2 param set /led_publisher <param_name> <value>
+
+```
+
+- To check running nodes and their info:
+```bash
+ros2 node list
+ros2 node info /led_publisher
+
+```
+
+- To check the message interface, you can use:
+```bash
+ros2 interface show std_msgs/msg/UInt8MultiArray
+
+
+```
 ## Learning Outcome
 
 By completing this assignment, you will:
@@ -48,20 +131,4 @@ By completing this assignment, you will:
 - Learn how to interact with ROS 2 services to modify node behavior and simulation environments.
 - Understand how to use ROS 2 parameters to control and alter the behavior of nodes in real-time.
 ---
-## Submission Process
 
-1. **Create Files:**
-   - Navigate to the `module_2_assignment` package.
-   - Create the required files for the custom ROS 2 node and launch file.
-
-2. **Document Your Work:**
-   - Create a `README.md` file in the `module_2_assignment` package.
-   - Provide details about the files you created, including explanations of the code and the commands needed to run your custom node and launch file.
-
-3. **Submit Your Assignment:**
-   - Push your changes to your forked repository.
-   - Provide your repository link in the assignment submission text area.
-   - **Note**: Ensure you press the "Start Assignment" button when you see the page (as it takes time to generate the pages).
-
-4. **Wait for Review:**
-   - Wait for the instructors to review your submission.
